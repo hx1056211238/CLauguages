@@ -44,6 +44,18 @@ public:
 		this->work = new char[strlen(work)+1];
 		strcpy(this->work,work);
 	}
+	Person(Person &per)
+	{
+		cout <<"Person(Person)"<<endl;
+		this->age = age;
+		this->name = new char[strlen(per.name)+1];
+		strcpy(this->name,per.name);
+
+		this->work = new char[strlen(per.work)+1];
+		strcpy(this->work,per.work);
+
+		
+	}
 	~Person()
 	{
 		if(this->name) delete this->name;
@@ -57,39 +69,45 @@ void Person::printInfo(void)
 	cout<<"this name = "<<name <<",age="<<age<<",work="<<work<<endl;
 }
 
-void test_fun()
+int  main()
 {
-	Person per("zhangsan",13);
-	Person per2;
-	Person per3();
-	Person *per4 = new Person;
-	Person *per5 = new Person();
+	Person per("zhangsan",199);
+	Person per2(per);// copy init function
+	
 
-	Person *per6 = new Person[2];
-	Person *per7 = new Person("lisi",19 ,"student");
-	Person *per8 = new Person("wangwu",1);
+	per2.printInfo();
+	return 0;
+	//Person per("zhangsan",13);
+	//Person per2;
+	//Person per3();
+//	Person *per4 = new Person;
+//	Person *per5 = new Person();
+
+//	Person *per6 = new Person[2];
+//	Person *per7 = new Person("lisi",19 ,"student");
+//	Person *per8 = new Person("wangwu",1);
 
 //	per.printInfo();
 //	per7->printInfo();
 //	per8->printInfo();
 
-	delete per4;
-	delete per5;
-	delete []per6;
-	delete per7;
-	delete per8;
+//	delete per4;
+//	delete per5;
+//	delete []per6;
+//	delete per7;
+//	delete per8;
 }
-int main(int argc,char **argv)
-{
+//int main(int argc,char **argv)
+//{
 
-	unsigned long i;
-	for(i =0;i<1000000;i++)
-	{
-		test_fun();
+//	unsigned long i;
+//	for(i =0;i<1000000;i++)
+//	{
+//		test_fun();
 //		sleep(10);
 		
-	}
-	sleep(10);
-	cout<<"run out"<<endl;
-	return 0;
-}
+//	}
+//	sleep(10);
+//	cout<<"run out"<<endl;
+//	return 0;
+//}
